@@ -1,0 +1,9 @@
+<mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let item of JobsOnQueryModel$ | async">
+    {{item.title}} <mat-chip-list aria-label="Fish selection">
+    <mat-chip *ngFor="let el of item.jobTags">
+   {{el}}
+  </mat-chip>
+  </mat-chip-list>
+</mat-list-item>
+</mat-list>
