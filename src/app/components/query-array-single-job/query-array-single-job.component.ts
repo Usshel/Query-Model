@@ -30,12 +30,17 @@ export class QueryArraySingleJobComponent {
   constructor(private _queryArraySingleJobService: QueryArraySingleJobService) {
   }
 
-  private _mapToJobWithTagsQuery(jobs: JobPostsModel[], jobsTags: JobTagsModel[]): JobsQueryModel[] {
+  private _mapToJobWithTagsQuery(
+    jobs: JobPostsModel[], 
+    jobsTags: JobTagsModel[]): JobsQueryModel[] {
     const jobsTagMap = jobsTags.reduce((a,c) => {
         return {...a, [c.id]: c}
       },{}) as Record<string, JobTagsModel>;
 
-      return jobs.map((job) => ({title: job.title, jobTags: job.jobTagIds.map((jId) => jobsTagMap[jId].name)}))
+      return jobs.map((job) => ({
+        title: job.title, 
+        jobTags: job.jobTagIds.map((jId) => jobsTagMap[jId].name)
+      }))
 
   }
 }
