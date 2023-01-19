@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <mat-card-content *ngFor="let item of usersRoleDepartment$ | async">
+        <mat-grid-list cols="2" rowHeight="2:1" style="height: 200px">
+            <mat-grid-tile>
+                <h1> {{item.email}} </h1>
+                <span>{{item.role}}, {{item.department}} </span>
+            </mat-grid-tile>
+    </mat-grid-list>
+    </mat-card-content>
+</mat-card>
