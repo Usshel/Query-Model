@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { Observable, Subject, forkJoin, from, pipe } from 'rxjs';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { Observable, Subject, forkJoin, from, pipe, of } from 'rxjs';
+import { concatMap, map, scan, switchMap, tap } from 'rxjs/operators';
 import { ProductModel } from '../../models/product.model';
 import { ProductWithOtherProductsQueryModel } from '../../query-models/product-with-other-products.query-model';
 import { ProductsService } from '../../services/products.service';
@@ -19,8 +19,10 @@ export class QuerySingleNestedSequentialListProductsWithCategoriesComponent {
   private _pushedInTimeProductsSubject: Subject<ProductWithOtherProductsQueryModel[]> = new Subject<ProductWithOtherProductsQueryModel[]>();
   public pushedInTimeProducts$: Observable<ProductWithOtherProductsQueryModel[]> = this._pushedInTimeProductsSubject.asObservable();
 
+  readonly emmitedValues: any[] = []
+  readonly emmitedValueObservable: Observable<any[]> = of(this.emmitedValues)
 
-  public loadingListSequentially$: Observable<ProductWithOtherProductsQueryModel> = 
+  readonly loadingListSequentially$: Observable<ProductWithOtherProductsQueryModel> = 
   this._productsService.getAllProducts().pipe(
      switchMap(( products ) => 
        from(products).pipe(
@@ -35,7 +37,12 @@ export class QuerySingleNestedSequentialListProductsWithCategoriesComponent {
        )
      )
    )
+
+   readonly loadingListSequentiallyWithToSub$: Observable<ProductWithOtherProductsQueryModel[]> = this.loadingListSequentially$.pipe(
+    scan((a:ProductWithOtherProductsQueryModel[], c) => [...a, c], [])
+   ) 
    
+
   
   // public loadingListSequentially$: Observable<ProductWithOtherProductsQueryModel[]> = this._productsService.getAllProducts().pipe(
   //   switchMap((products) =>

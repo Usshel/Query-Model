@@ -1,6 +1,17 @@
 
 
-
-
-
-
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <mat-card-content>
+        <ng-container *ngFor="let productWithOthers of loadingListSequentiallyWithToSub$ | async">
+            <mat-list role="list">
+                <mat-list-item role="listitem">{{productWithOthers.product.title}} for only {{productWithOthers.product.price}} $</mat-list-item>
+            </mat-list>
+            <mat-chip-list aria-label="Fish selection" >
+                <mat-chip *ngFor="let item of productWithOthers.otherProducts" >
+                {{item.title}}
+                </mat-chip>
+            </mat-chip-list>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

@@ -1,6 +1,16 @@
-import { ProductModel } from "../models/product.model";
+
 
 export interface ProductWithOtherProductsQueryModel {
-  readonly product: ProductModel;
-  readonly otherProducts: ProductModel[];
+  readonly product: {
+    id: string;
+    title: string;
+    price: number;
+    category: string;
+  };
+  readonly otherProducts: {
+    id: string;
+    title: string;
+    price: number;
+    category: string;
+  }[];
 }

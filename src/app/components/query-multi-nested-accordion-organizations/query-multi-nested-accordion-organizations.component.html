@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <mat-card-content> 
+        <mat-accordion>
+            <ng-container *ngFor="let organisation of orgs$ | async" > 
+                <mat-expansion-panel style="margin-bottom: 0.5rem;" >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Show {{organisation.name}} teams
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-accordion>
+                            <ng-container *ngFor="let team of organisation.teams" >
+                                <mat-expansion-panel style="margin-bottom: 0.5rem;" >
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Show {{team.name}}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <ng-container *ngFor="let user of team.members">
+                                        <div>
+                                            <img [src]="user.avatarUrl">
+                                        </div>
+                                    </ng-container>
+                                </mat-expansion-panel>
+                            </ng-container>
+                        </mat-accordion>
+                </mat-expansion-panel>
+            </ng-container>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

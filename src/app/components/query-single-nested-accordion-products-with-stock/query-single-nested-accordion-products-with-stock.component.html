@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>Products with stock value</mat-card-title>
+  <mat-card-content>
+      <mat-accordion>
+          <ng-container *ngFor="let product of products$|async">
+              <mat-expansion-panel  style='margin-bottom: 0.5rem;'>
+                  <mat-expansion-panel-header>
+                      <mat-panel-title>
+                          {{product.name}} for {{product.price|currency}}
+                      </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  Number of products in stock: {{product.stock}}
+              </mat-expansion-panel>
+          </ng-container>
+      </mat-accordion>
+  </mat-card-content>
+</mat-card>
