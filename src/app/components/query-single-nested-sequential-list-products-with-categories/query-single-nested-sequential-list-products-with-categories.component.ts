@@ -36,7 +36,6 @@ export class QuerySingleNestedSequentialListProductsWithCategoriesComponent {
      )
    )
    
-   
   
   // public loadingListSequentially$: Observable<ProductWithOtherProductsQueryModel[]> = this._productsService.getAllProducts().pipe(
   //   switchMap((products) =>

@@ -18,7 +18,4 @@ export class OrganizationsService {
     return this._httpClient.get<TeamModel[]>(`https://636ce2d8ab4814f2b2712854.mockapi.io/organizations/${orgId}/teams`);
   }
 
-  getAllUsersWithAvatars(): Observable<UsersAvatarsModel[]> {
-    return this._httpClient.get<UsersAvatarsModel[]>('https://636ce2d8ab4814f2b2712854.mockapi.io/users-with-avatars');
-  }
 }
