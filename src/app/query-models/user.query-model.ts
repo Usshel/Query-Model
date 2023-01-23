@@ -1,5 +1,6 @@
 export interface UserQueryModel {
-  readonly email: string;
-  readonly role: string;
-  
+  readonly userName: string;
+  readonly model: string;
+  readonly brand: string;
+  readonly comfortFeatures: string[];
 }
